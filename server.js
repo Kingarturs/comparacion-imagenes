@@ -20,19 +20,14 @@ io.on("connection", socket => {
     
     socket.on("requestKey", function(data) {
         key = data.key;
-        socket.send("Llave recibida 🗝")
         console.log(key)
     });
     
     socket.on("message", function(data) {
         var image = data;
         
-        if (key === "") {
-            socket.send("Primero es necesario recibir la llave 😢")
-        } else {
-            decryptedImage = CryptoJS.AES.decrypt(image, key)
-            socket.emit("requestDecrytedImage", decryptedImage.toString(CryptoJS.enc.Utf8))
-        }
+        decryptedImage = CryptoJS.AES.decrypt(image, key)
+        socket.emit("requestDecrytedImage", decryptedImage.toString(CryptoJS.enc.Utf8))
     });
 
 });

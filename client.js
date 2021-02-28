@@ -1,11 +1,9 @@
 let input = document.getElementById("imageInput");
-let sendKeyButton = document.getElementById("sendKeyButton");
 let sendImageButton = document.getElementById("sendImageButton");
 let returnedImage = document.getElementById("returnedImage");
 
 input.addEventListener('change', handleChange);
 sendImageButton.addEventListener('click', sendImage);
-sendKeyButton.addEventListener('click', sendKey);
 
 image = "";
 
@@ -40,7 +38,6 @@ function handleChange(e) {
     fileReader.onloadend = (e) => {
         image = fileReader.result
         sendImageButton.disabled = false
-        sendKeyButton.disabled = false
     }
 }
 
@@ -57,11 +54,9 @@ socket.on("message", (msg) => {
     alert(`Servidor> ${msg}`)
 })
 
-function sendKey() {
-    socket.emit("requestKey", { key: key });
-}
-
 function sendImage() {
+    socket.emit("requestKey", { key: key });
+
     let encryptedImage = CryptoJS.AES.encrypt(image, key);
     socket.send(encryptedImage.toString());
 }
