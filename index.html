@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparación de imágenes | Proyecto 1</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.js"></script>
+    <script src="https://cdn.socket.io/3.1.1/socket.io.min.js" integrity="sha384-gDaozqUvc4HTgo8iZjwth73C6dDDeOJsAgpxBcMpZYztUfjHXpzrpdrHRdVp8ySO" crossorigin="anonymous"></script>
+    <script defer src="client.js"></script>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div id="main">
+        <h3 id="result">Ingresa una imagen para realizar el proceso de comparación</h3>
+
+        <div id="imgs">
+            <canvas id="canvas" style="max-width: 350px; min-width: 200px;"></canvas>
+            <img src="" alt="" id="returnedImage" style="max-width: 350px; min-width: 200px;">
+        </div>
+        
+        <div id="buttons">
+            <input type="file" id="imageInput" accept="image/x-png, image/jpeg"/>
+            <button id="sendKeyButton" disabled class="button">Enviar key</button>
+            <button id="sendImageButton" disabled class="button">Enviar imagen</button>
+        </div>
+    </div>
+</body>
+</html>
