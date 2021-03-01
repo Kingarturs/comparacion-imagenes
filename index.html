@@ -12,17 +12,20 @@
 </head>
 <body>
     <div id="main">
-        <h3 id="result">Ingresa una imagen para realizar el proceso de comparación</h3>
-
-        <div id="imgs">
+       <div id="imgs">
             <canvas id="canvas" style="max-width: 350px; min-width: 200px;"></canvas>
             <img src="" alt="" id="returnedImage" style="max-width: 350px; min-width: 200px;">
         </div>
+        
+        <h3 id="result">Ingresa una imagen para realizar el proceso de comparación</h3>
         
         <div id="buttons">
             <input type="file" id="imageInput" accept="image/x-png, image/jpeg"/>
             <button id="sendImageButton" disabled class="button">Enviar imagen</button>
         </div>
+    </div>
+    <div id="loader">
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>
 </body>
 </html>

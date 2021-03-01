@@ -1,13 +1,16 @@
 let input = document.getElementById("imageInput");
 let sendImageButton = document.getElementById("sendImageButton");
 let returnedImage = document.getElementById("returnedImage");
+let loader = document.getElementById("loader");
+
+loader.style.display = "none";
 
 input.addEventListener('change', handleChange);
 sendImageButton.addEventListener('click', sendImage);
 
 image = "";
 
-function randomString (length = 8) {
+function randomString(length = 8) {
     // Definir los carácteres
     let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let str = '';
@@ -47,7 +50,7 @@ const socket = io();
 const key = randomString(24);
 
 socket.on("connect", () => {
-    console.log(key)
+    console.log(key);
 });
 
 socket.on("message", (msg) => {
@@ -55,8 +58,9 @@ socket.on("message", (msg) => {
 })
 
 function sendImage() {
+    loader.style.display = "flex";
     socket.emit("requestKey", { key: key });
-
+    
     let encryptedImage = CryptoJS.AES.encrypt(image, key);
     socket.send(encryptedImage.toString());
 }
@@ -71,4 +75,5 @@ socket.on("requestDecrytedImage", function(data) {
     } else {
         result.innerHTML = "Las imágenes son diferentes :("
     }
+    loader.style.display = "none";
 });
